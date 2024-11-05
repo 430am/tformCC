@@ -4,12 +4,6 @@ variable "hub_vnet_address_space" {
     default = [ "172.16.0.0/20" ]
 }
 
-variable "spoke_vnet_address_space" {
-    description = "List of address spaces for the spoke virtual network. One /24 address space is expected."
-    type = list(string)
-    default = [ "172.16.16.0/16" ]
-}
-
 variable "location" {
     default = "eastus2"
 }
@@ -25,4 +19,22 @@ variable "tags" {
       env = null
       owner = null
     }
+}
+
+variable "cc_username" {
+  description = "username for the local account that will be created on the CycleCloud server"
+  type = string
+  default = "azureadmin"
+}
+
+variable "cc_hostname" {
+  description = "hostname of the CycleCloud server"
+  type = string
+  default = "CycleCloudSrv"
+}
+
+variable "cc_vm_sku" {
+  description = "Azure SKU size of the CycleCloud VM"
+  type = string
+  default = "Standard_D4as_v5"
 }

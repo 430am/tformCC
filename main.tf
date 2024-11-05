@@ -6,8 +6,10 @@ resource "random_string" "resource_naming" {
     numeric = true
 }
 
-resource "azurerm_resource_group" "network" {
+data "azurerm_client_config" "current" {}
+
+resource "azurerm_resource_group" "resource_group" {
     location = var.location
-    name = "rg-${random_string.resource_naming.result}"
+    name = "rg-${random_string.resource_naming.result}-net"
     tags = var.tags
 }

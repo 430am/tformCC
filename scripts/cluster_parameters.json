@@ -1,0 +1,17 @@
+{
+    "Credentials": "$cyclecloud_subscription_name",
+    "SubnetId": "${RG}/${VMVNETNAME}/${VMSUBNETNAME}",
+    "ReturnProxy": false,
+    "UsePublicNetwork": false,
+    "Region": "${REGION}",
+    "AdditionalNFSExportPath": null,
+    "AdditionalNFSMountPoint": null,
+    "DynamicSpotMaxPrice": null,
+    "HTCImageName": "$CLUSTERIMAGE",
+    "HPCImageName": "$CLUSTERIMAGE",
+    "DynamicImageName" : "$CLUSTERIMAGE",
+    "SchedulerMachineType" :  "$SKUSCHEDULER",
+    "HPCMachineType" :  "$SKUHPCNODES",
+    "MaxHPCExecuteCoreCount": "$HPCNCORES",
+    "MaxHTCExecuteCoreCount": "$HTCNCORES"
+}
