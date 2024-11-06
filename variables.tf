@@ -38,3 +38,12 @@ variable "cc_vm_sku" {
   type = string
   default = "Standard_D4as_v5"
 }
+
+variable "cc_password" {
+}
+
+variable "cyclecloud_cloud_init" {
+  description = "path to cloud-init user data to pass to the VM"
+  type = string
+  default = "./scripts/user-data.yaml.tpl"
+}

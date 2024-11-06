@@ -7,6 +7,25 @@ resource "azurerm_storage_account" "vm_boot_diag" {
     
 }
 
+data "cloudinit_config" "cc_vm_cloudinit" {
+  gzip = false
+  base64_encode = true
+
+  part {
+    filename = "./scripts/cyclecloud.yaml"
+    content_type = "text/cloud-config"
+    content = templatefile(var.cyclecloud_cloud_init, {
+      cyclecloud_admin_name = var.cc_username
+      cyclecloud_admin_password = var.cc_password
+      cyclecloud_admin_public_key = chomp(azapi_resource_action.ssh_public_key_gen.output.publicKey)
+      cyclecloud_rg = azurerm_resource_group.resource_group.name
+      cyclecloud_location = azurerm_resource_group.resource_group.location
+      cyclecloud_storage_account = azurerm_storage_account.cc_storage.name
+      cyclecloud_storage_container = azurerm_storage_container.name
+    })
+  }
+}
+
 resource "azurerm_linux_virtual_machine" "cc_tf_vm" {
     admin_username = var.cc_username
     location = azurerm_resource_group.resource_group.location
